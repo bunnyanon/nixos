@@ -79,13 +79,14 @@
     nvidia = {
       modesetting.enable = true; 
       nvidiaSettings = true;
+      forceFullCompositionPipeline = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 
   users.users.bunny = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ];
     packages = with pkgs; [
     ];
   };
@@ -94,10 +95,18 @@
     vim
   ];
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
-  ];
-
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    ];
+  };
+  
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+  };
+    
   nix.settings.experimental-features = "nix-command flakes";
   system.stateVersion = "24.05";
 }

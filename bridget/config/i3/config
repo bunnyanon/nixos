@@ -8,6 +8,8 @@
 #
 # Logo key. Use Mod1 for Alt.
 
+font pango:Iosevka Nerd Font 10
+
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
@@ -20,6 +22,9 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_run
+
+exec --no-startup-id picom
+exec --no-startup-id xwallpaper --zoom ~/.config/i3/wallpaper.jpg
 
 ### Output configuration
 #
@@ -64,13 +69,13 @@ set $menu dmenu_run
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec --no-startup-id $term
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec --no-startup-id $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

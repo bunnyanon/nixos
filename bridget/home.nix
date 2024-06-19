@@ -22,6 +22,8 @@
     neofetch
     dconf
     emacs
+    picom
+    xwallpaper
   ];
 
   programs.git = {
