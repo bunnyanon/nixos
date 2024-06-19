@@ -5,12 +5,12 @@
   home.homeDirectory = "/home/bunny";
 
   home.file.".config/i3" = {
-    source = ./config/i3;
+    source = ./../../common/config/i3;
     recursive = true;
   };
    
   home.file.".config/emacs" = {
-    source = ./config/emacs;
+    source = ./../../common/config/emacs;
     recursive = true;
   };
 
@@ -39,7 +39,7 @@
 
   programs.alacritty = {
     enable = true;
-    settings = import ./programs/alacritty/alacritty.nix;
+    settings = import ./../../common/programs/alacritty/alacritty.nix;
   };
 
   gtk = {
