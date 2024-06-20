@@ -19,12 +19,25 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
 
 (require 'use-package)
 (setq use-package-always-ensure t)
 (setq use-package-verbose nil)
+
+(use-package lsp-java :init)
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
+(setq path-to-lombok "~/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar")
+(setq lsp-java-vmargs
+            `("-noverify"
+              "-Xmx1G"
+              "-XX:+UseG1GC"
+              "-XX:+UseStringDeduplication"
+              ,(concat "-javaagent:" path-to-lombok)
+              ,(concat "-Xbootclasspath/a:" path-to-lombok)))
+
+(use-package geiser :init)
+(use-package geiser-guile :init)
 
 (use-package gruber-darker-theme)
 (load-theme 'gruber-darker t)
